@@ -1,30 +1,30 @@
 ////////////////////////////////////////////////////////////////////////////////
-//ƒƒJƒgƒƒjƒNƒXÀK ‘•’u§Œäƒ\[ƒXƒR[ƒh                                     //
-//Version : 1.0ÅI (2013.9.27)                                               //
-//Author  : ¯q—T‰î, —ÑCàŠ                                                  //
+//ãƒ¡ã‚«ãƒˆãƒ­ãƒ‹ã‚¯ã‚¹å®Ÿç¿’ è£…ç½®åˆ¶å¾¡ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰                                     //
+//Version : 1.0æœ€çµ‚ (2013.9.27)                                               //
+//Author  : åº„å­è£•ä»‹, æ—ä¿®ç…Œ                                                  //
 ////////////////////////////////////////////////////////////////////////////////
-//ƒ}ƒCƒRƒ“ ƒ|[ƒgİ’è                                                         //
-//ƒA[ƒ€ƒ‚[ƒ^    : P1 B2=CW, B3=CCW                                          //
-//ƒEƒF[ƒnƒ‚[ƒ^  : P2 B2=CW, B3=CCW                                          //
+//ãƒã‚¤ã‚³ãƒ³ ãƒãƒ¼ãƒˆè¨­å®š                                                         //
+//ã‚¢ãƒ¼ãƒ ãƒ¢ãƒ¼ã‚¿    : P1 B2=CW, B3=CCW                                          //
+//ã‚¦ã‚§ãƒ¼ãƒãƒ¢ãƒ¼ã‚¿  : P2 B2=CW, B3=CCW                                          //
 //LED             : PB                                                        //
-//ƒXƒCƒbƒ`ƒ{ƒ^ƒ“  : PA                                                        //
-//ƒ‰ƒCƒ“ƒZƒ“ƒT    : P7-0(AN0)                                                 //
-//ƒ\ƒŒƒmƒCƒh      : P4 B0                                                     //
-//ƒI[ƒgƒXƒCƒbƒ`  : P5 B0(ã), B1(‰º)                                         //
+//ã‚¹ã‚¤ãƒƒãƒãƒœã‚¿ãƒ³  : PA                                                        //
+//ãƒ©ã‚¤ãƒ³ã‚»ãƒ³ã‚µ    : P7-0(AN0)                                                 //
+//ã‚½ãƒ¬ãƒã‚¤ãƒ‰      : P4 B0                                                     //
+//ã‚ªãƒ¼ãƒˆã‚¹ã‚¤ãƒƒãƒ  : P5 B0(ä¸Š), B1(ä¸‹)                                         //
 ////////////////////////////////////////////////////////////////////////////////
-//ƒXƒeƒbƒv•ªŠ„”İ’è 1ƒpƒ‹ƒX 0.225“x                                          //
+//ã‚¹ãƒ†ãƒƒãƒ—åˆ†å‰²æ•°è¨­å®š 1ãƒ‘ãƒ«ã‚¹ 0.225åº¦                                          //
 ////////////////////////////////////////////////////////////////////////////////
 
-/*  ƒwƒbƒ_ƒCƒ“ƒNƒ‹[ƒh  */
-#include       <3052.h>                                                          // 3052F‚Ì’è‹`ƒwƒbƒ_
+/*  ãƒ˜ãƒƒãƒ€ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰  */
+#include       <3052.h>                                                          // 3052Fã®å®šç¾©ãƒ˜ãƒƒãƒ€
 #include       <stdio.h>
 #include       <math.h>
 
-/*  ƒpƒ‰ƒ[ƒ^İ’è  */
-#define        DEV 1600                                                          //ƒ‚[ƒ^•ª‰ğ”\(ƒXƒeƒbƒvŠp0.225‹‚È‚ç1600)
-#define        MODIFY_END 5                                                      //C³Š®—¹Šm”F’li•Îc‹——£‚ª‚±‚Ì’l‚æ‚è¬‚³‚¯‚ê‚ÎC³‚ªŠ®—¹‚µ‚½‚à‚Ì‚Æ‚·‚éj
+/*  ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿è¨­å®š  */
+#define        DEV 1600                                                          //ãƒ¢ãƒ¼ã‚¿åˆ†è§£èƒ½(ã‚¹ãƒ†ãƒƒãƒ—è§’0.225Â°ãªã‚‰1600)
+#define        MODIFY_END 5                                                      //ä¿®æ­£å®Œäº†ç¢ºèªå€¤ï¼ˆåèŠ¯è·é›¢ãŒã“ã®å€¤ã‚ˆã‚Šå°ã•ã‘ã‚Œã°ä¿®æ­£ãŒå®Œäº†ã—ãŸã‚‚ã®ã¨ã™ã‚‹ï¼‰
 
-/*  ƒvƒƒgƒ^ƒCƒvéŒ¾  */
+/*  ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€  */
 int     ADConvert(void);
 void    WaitStart(void);
 void    FindNotch(void);
@@ -38,38 +38,38 @@ void    ControlCylinder(int function);
 void    DriveArmMotor(long int setPosition);
 void    DriveWaferMotor(int rotationDirection, int pulse);
 
-/*  ƒOƒ[ƒoƒ‹•Ï”éŒ¾  */
-long int     PositionArmMotor;                                                   //ƒA[ƒ€ƒ‚[ƒ^Œ»İˆÊ’u(ƒpƒ‹ƒX”)
-long int     ArmMotorDef = 30000;                                                //ƒEƒF[ƒn‚ğ‚Æ‚è‚És‚­‚Æ‚«‚Ìƒpƒ‹ƒX”
-int     MeasurementData[DEV];                                                    //‘ª’èƒf[ƒ^Ši”[”z—ñ
-int     ErrorDistance;                                                           /*•Îc—Êi’†S‚©‚ç‚Ì‚¸‚ê’·‚³j
-                                                                                   (-511`482‚Ü‚Å‚ÌƒfƒWƒ^ƒ‹’l) Œã‚ÅƒA[ƒ€‚ª1ƒpƒ‹ƒX‚Å‰½mmi‚Ş‚©’²‚×‚Ä•ÏŠ·‚·‚éimm¨ƒpƒ‹ƒXj*/
-int     ErrorDegree;                                                             //•Îc—ÊiŠp“xj(ƒpƒ‹ƒX”)
-int     NotchDegree;                                                             //ƒmƒbƒ`‚ÌŠp“x(ƒpƒ‹ƒX”)
-int     NotchDetectionFlag;                                                      //ƒmƒbƒ`ŒŸoƒtƒ‰ƒO(0:¸”s, 1:¬Œ÷)
+/*  ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€  */
+long int     PositionArmMotor;                                                   //ã‚¢ãƒ¼ãƒ ãƒ¢ãƒ¼ã‚¿ç¾åœ¨ä½ç½®(ãƒ‘ãƒ«ã‚¹æ•°)
+long int     ArmMotorDef = 30000;                                                //ã‚¦ã‚§ãƒ¼ãƒã‚’ã¨ã‚Šã«è¡Œãã¨ãã®ãƒ‘ãƒ«ã‚¹æ•°
+int     MeasurementData[DEV];                                                    //æ¸¬å®šãƒ‡ãƒ¼ã‚¿æ ¼ç´é…åˆ—
+int     ErrorDistance;                                                           /*åèŠ¯é‡ï¼ˆä¸­å¿ƒã‹ã‚‰ã®ãšã‚Œé•·ã•ï¼‰
+                                                                                   (-511ï½482ã¾ã§ã®ãƒ‡ã‚¸ã‚¿ãƒ«å€¤) å¾Œã§ã‚¢ãƒ¼ãƒ ãŒ1ãƒ‘ãƒ«ã‚¹ã§ä½•mmé€²ã‚€ã‹èª¿ã¹ã¦å¤‰æ›ã™ã‚‹ï¼ˆmmâ†’ãƒ‘ãƒ«ã‚¹ï¼‰*/
+int     ErrorDegree;                                                             //åèŠ¯é‡ï¼ˆè§’åº¦ï¼‰(ãƒ‘ãƒ«ã‚¹æ•°)
+int     NotchDegree;                                                             //ãƒãƒƒãƒã®è§’åº¦(ãƒ‘ãƒ«ã‚¹æ•°)
+int     NotchDetectionFlag;                                                      //ãƒãƒƒãƒæ¤œå‡ºãƒ•ãƒ©ã‚°(0:å¤±æ•—, 1:æˆåŠŸ)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : main                                                             //
-//Details  : ƒƒCƒ“ŠÖ”                                                       //
+//Details  : ãƒ¡ã‚¤ãƒ³é–¢æ•°                                                       //
 //Argument : -                                                                //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 int     main(void)
 {
-    //TestMain();                                                                  //Œ±‚Ì‚Æ‚«‚Í‚±‚ê‚ğŒÄ‚Ô
+    //TestMain();                                                                  //è©¦é¨“ã®ã¨ãã¯ã“ã‚Œã‚’å‘¼ã¶
 
-    /* ‰Šú‰»ˆ—*/
-    InitialSetting();                                                            //‰Šúİ’è
-    ControlCylinder(0);                                                          //ƒVƒŠƒ“ƒ_‚ğ‰ŠúˆÊ’ui‰º~ˆÊ’uj‚Éİ’è
-    SetArmMotor();                                                               //ƒA[ƒ€‚ğ“KØ‚ÈˆÊ’u‚Ü‚ÅˆÚ“®(è“®)
+    /* åˆæœŸåŒ–å‡¦ç†*/
+    InitialSetting();                                                            //åˆæœŸè¨­å®š
+    ControlCylinder(0);                                                          //ã‚·ãƒªãƒ³ãƒ€ã‚’åˆæœŸä½ç½®ï¼ˆä¸‹é™ä½ç½®ï¼‰ã«è¨­å®š
+    SetArmMotor();                                                               //ã‚¢ãƒ¼ãƒ ã‚’é©åˆ‡ãªä½ç½®ã¾ã§ç§»å‹•(æ‰‹å‹•)
     Wait(0,50);
-    ControlCylinder(1);                                                          //ƒVƒŠƒ“ƒ_ã¸
+    ControlCylinder(1);                                                          //ã‚·ãƒªãƒ³ãƒ€ä¸Šæ˜‡
 
-    /*ƒ†[ƒU‚ªƒA[ƒ€ã‚ÖƒEƒF[ƒn‚ğƒZƒbƒg*/
+    /*ãƒ¦ãƒ¼ã‚¶ãŒã‚¢ãƒ¼ãƒ ä¸Šã¸ã‚¦ã‚§ãƒ¼ãƒã‚’ã‚»ãƒƒãƒˆ*/
 
-    WaitStart();                                                                 //ƒXƒCƒbƒ`‚ª‰Ÿ‚³‚ê‚é‚Ü‚Å‘Ò‚Â
+    WaitStart();                                                                 //ã‚¹ã‚¤ãƒƒãƒãŒæŠ¼ã•ã‚Œã‚‹ã¾ã§å¾…ã¤
 
-    /*ƒEƒF[ƒn‚ğƒyƒfƒXƒ^ƒ‹ã‚Ü‚Å‰^‚Ô*/
+    /*ã‚¦ã‚§ãƒ¼ãƒã‚’ãƒšãƒ‡ã‚¹ã‚¿ãƒ«ä¸Šã¾ã§é‹ã¶*/
     while(1)
     {
          DriveArmMotor(PositionArmMotor+1);
@@ -83,30 +83,30 @@ int     main(void)
     PositionArmMotor = 0;
 
     Wait(0,50);
-    ControlCylinder(0);                                                          //ƒVƒŠƒ“ƒ_‚ğ‰º‚°‚é
+    ControlCylinder(0);                                                          //ã‚·ãƒªãƒ³ãƒ€ã‚’ä¸‹ã’ã‚‹
     Wait(0,50);
-    Measurement();                                                               //•Îc‘ª’èŠJn
+    Measurement();                                                               //åèŠ¯æ¸¬å®šé–‹å§‹
     Wait(0,50);
 
-    FindNotch();                                                                 //ƒmƒbƒ`ŒŸo
-    FindError();                                                                 //•ÎcŒŸo‰‰Z
-    ModifyError();                                                               //•Îc‚ğC³‚·‚é
+    FindNotch();                                                                 //ãƒãƒƒãƒæ¤œå‡º
+    FindError();                                                                 //åèŠ¯æ¤œå‡ºæ¼”ç®—
+    ModifyError();                                                               //åèŠ¯ã‚’ä¿®æ­£ã™ã‚‹
 
     Wait(0,100);
 
     Measurement();
 
-    /*•Îc‚ªC³‚³‚ê‚é‚Ü‚ÅŒJ‚è•Ô‚·*/
+    /*åèŠ¯ãŒä¿®æ­£ã•ã‚Œã‚‹ã¾ã§ç¹°ã‚Šè¿”ã™*/
     /*
     do
     {
-        ModifyError();                                                           //•Îc‚ğC³‚·‚é
+        ModifyError();                                                           //åèŠ¯ã‚’ä¿®æ­£ã™ã‚‹
         Measurement();
-        FindNotch();                                                             //ƒmƒbƒ`ŒŸo
-        FindError();                                                             //•ÎcŒŸo‰‰Z
+        FindNotch();                                                             //ãƒãƒƒãƒæ¤œå‡º
+        FindError();                                                             //åèŠ¯æ¤œå‡ºæ¼”ç®—
     }while (ErrorDistance > MODIFY_END);
 
-    DriveArmMotor(0);                                                            //ƒA[ƒ€ƒ‚[ƒ^‚ğ‰ŠúˆÊ’u‚Ö–ß‚·
+    DriveArmMotor(0);                                                            //ã‚¢ãƒ¼ãƒ ãƒ¢ãƒ¼ã‚¿ã‚’åˆæœŸä½ç½®ã¸æˆ»ã™
     */
 
     return 0;
@@ -114,28 +114,28 @@ int     main(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : InitialSetting                                                   //
-//Details  : ‰Šú‰»                                                           //
+//Details  : åˆæœŸåŒ–                                                           //
 //Argument : -                                                                //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 void    InitialSetting(void)
 {
-    /*ƒ}ƒCƒRƒ“ ƒ|[ƒgİ’è*/
-    P1.DDR = 0xff;                                                               // P1(ƒA[ƒ€ƒ‚[ƒ^)‚ğo—Íƒ|[ƒg‚Éİ’è
-    P2.DDR = 0xff;                                                               // P2(ƒEƒF[ƒnƒ‚[ƒ^)‚ğo—Íƒ|[ƒg‚Éİ’è
-    P3.DDR = 0x00;                                                               // P3(ƒtƒHƒgƒZƒ“ƒT)‚ğ“ü—Íƒ|[ƒg‚Éİ’è
-    P4.DDR = 0xff;                                                               // P4iƒ\ƒŒƒmƒCƒhj‚ğo—Íƒ|[ƒg‚Éİ’è
-    P5.DDR = 0x00;                                                               // P5(ƒI[ƒgƒXƒCƒbƒ`)‚ğ“ü—Íƒ|[ƒg‚Éİ’è
-    PA.DDR = 0x00;                                                               // PA(ƒXƒCƒbƒ`ƒ{ƒ^ƒ“)‚ğ“ü—Íƒ|[ƒg‚Éİ’è
-    PB.DDR = 0xff;                                                               // PB(LED)‚ğo—Íƒ|[ƒg‚Éİ’è
-    PB.DR.BYTE = 0xff;                                                           // PB(LED)‚ğ‘S‚ÄÁ“”
+    /*ãƒã‚¤ã‚³ãƒ³ ãƒãƒ¼ãƒˆè¨­å®š*/
+    P1.DDR = 0xff;                                                               // P1(ã‚¢ãƒ¼ãƒ ãƒ¢ãƒ¼ã‚¿)ã‚’å‡ºåŠ›ãƒãƒ¼ãƒˆã«è¨­å®š
+    P2.DDR = 0xff;                                                               // P2(ã‚¦ã‚§ãƒ¼ãƒãƒ¢ãƒ¼ã‚¿)ã‚’å‡ºåŠ›ãƒãƒ¼ãƒˆã«è¨­å®š
+    P3.DDR = 0x00;                                                               // P3(ãƒ•ã‚©ãƒˆã‚»ãƒ³ã‚µ)ã‚’å…¥åŠ›ãƒãƒ¼ãƒˆã«è¨­å®š
+    P4.DDR = 0xff;                                                               // P4ï¼ˆã‚½ãƒ¬ãƒã‚¤ãƒ‰ï¼‰ã‚’å‡ºåŠ›ãƒãƒ¼ãƒˆã«è¨­å®š
+    P5.DDR = 0x00;                                                               // P5(ã‚ªãƒ¼ãƒˆã‚¹ã‚¤ãƒƒãƒ)ã‚’å…¥åŠ›ãƒãƒ¼ãƒˆã«è¨­å®š
+    PA.DDR = 0x00;                                                               // PA(ã‚¹ã‚¤ãƒƒãƒãƒœã‚¿ãƒ³)ã‚’å…¥åŠ›ãƒãƒ¼ãƒˆã«è¨­å®š
+    PB.DDR = 0xff;                                                               // PB(LED)ã‚’å‡ºåŠ›ãƒãƒ¼ãƒˆã«è¨­å®š
+    PB.DR.BYTE = 0xff;                                                           // PB(LED)ã‚’å…¨ã¦æ¶ˆç¯
 
     return 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : SetArmMotor                                                      //
-//Details  : ƒA[ƒ€ƒ‚[ƒ^©—RˆÚ“®                                             //
+//Details  : ã‚¢ãƒ¼ãƒ ãƒ¢ãƒ¼ã‚¿è‡ªç”±ç§»å‹•                                             //
 //Argument : -                                                                //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
@@ -166,19 +166,19 @@ void    SetArmMotor(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : Wait                                                             //
-//Details  : ‘Ò‚¿ŠÔ”­¶                                                     //
-//Argument : type             ‘Ò‚¿ŠÔƒ^ƒCƒv                                  //
-//           waitTime         ŠÔw’è                                        //
+//Details  : å¾…ã¡æ™‚é–“ç™ºç”Ÿ                                                     //
+//Argument : type             å¾…ã¡æ™‚é–“ã‚¿ã‚¤ãƒ—                                  //
+//           waitTime         æ™‚é–“æŒ‡å®š                                        //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
-//type=0 •b’PˆÊw’è waitTime=100‚Å–ñ1•b‘Ò‚Â                                   //
-//type=1 ƒA[ƒ€ƒ‚[ƒ^‰ñ“]ƒfƒBƒŒƒC                                             //
-//type=2 ƒEƒF[ƒnƒ‚[ƒ^‰ñ“]ƒfƒBƒŒƒC                                           //
+//type=0 ç§’å˜ä½æŒ‡å®š waitTime=100ã§ç´„1ç§’å¾…ã¤                                   //
+//type=1 ã‚¢ãƒ¼ãƒ ãƒ¢ãƒ¼ã‚¿å›è»¢ãƒ‡ã‚£ãƒ¬ã‚¤                                             //
+//type=2 ã‚¦ã‚§ãƒ¼ãƒãƒ¢ãƒ¼ã‚¿å›è»¢ãƒ‡ã‚£ãƒ¬ã‚¤                                           //
 ////////////////////////////////////////////////////////////////////////////////
 void    Wait(int type, int waitTime)
 {
-    int     t;                                                                   //“à•”•Ï”t‚ğ’è‹`
-    int     i;                                                                   //“à•”•Ï”i‚ğ’è‹`
+    int     t;                                                                   //å†…éƒ¨å¤‰æ•°tã‚’å®šç¾©
+    int     i;                                                                   //å†…éƒ¨å¤‰æ•°iã‚’å®šç¾©
 
     switch(type)
     {
@@ -206,13 +206,13 @@ void    Wait(int type, int waitTime)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : DriveArmMotor                                                    //
-//Details  : ƒA[ƒ€ƒ‚[ƒ^‹ì“®                                                 //
-//Argument : setPosition               ƒA[ƒ€‚Ìâ‘ÎˆÊ’uw’è                   //
+//Details  : ã‚¢ãƒ¼ãƒ ãƒ¢ãƒ¼ã‚¿é§†å‹•                                                 //
+//Argument : setPosition               ã‚¢ãƒ¼ãƒ ã®çµ¶å¯¾ä½ç½®æŒ‡å®š                   //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 void    DriveArmMotor(long int setPosition)
 {
-    P1.DR.BYTE = 0x00;                                                            //ƒ}ƒCƒRƒ“ƒ|[ƒg‰Šú‰»
+    P1.DR.BYTE = 0x00;                                                            //ãƒã‚¤ã‚³ãƒ³ãƒãƒ¼ãƒˆåˆæœŸåŒ–
 
     if (setPosition > PositionArmMotor)
     {
@@ -245,16 +245,16 @@ void    DriveArmMotor(long int setPosition)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : DriveWaferMotor                                                  //
-//Details  : ƒEƒF[ƒnƒ‚[ƒ^‹ì“®                                               //
-//Argument : rotationDirection          ‰ñ“]•ûŒü [0:CW, 1:CCW]                //
-//           pulse                      ƒpƒ‹ƒX”                              //
+//Details  : ã‚¦ã‚§ãƒ¼ãƒãƒ¢ãƒ¼ã‚¿é§†å‹•                                               //
+//Argument : rotationDirection          å›è»¢æ–¹å‘ [0:CW, 1:CCW]                //
+//           pulse                      ãƒ‘ãƒ«ã‚¹æ•°                              //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 void    DriveWaferMotor(int rotationDirection, int pulse)
 {
-    P2.DR.BYTE =0x00;                                                            //ƒ}ƒCƒRƒ“ƒ|[ƒg‰Šú‰»
+    P2.DR.BYTE =0x00;                                                            //ãƒã‚¤ã‚³ãƒ³ãƒãƒ¼ãƒˆåˆæœŸåŒ–
 
-    /*Œv‰ñ‚è(CW)*/
+    /*æ™‚è¨ˆå›ã‚Š(CW)*/
     if (rotationDirection == 0)
     {
         while (pulse--)
@@ -266,7 +266,7 @@ void    DriveWaferMotor(int rotationDirection, int pulse)
         }
     }
 
-    /*”½Œv‰ñ‚è(CCW)*/
+    /*åæ™‚è¨ˆå›ã‚Š(CCW)*/
     else
     {
         while (pulse--)
@@ -283,33 +283,33 @@ void    DriveWaferMotor(int rotationDirection, int pulse)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : ADConvert                                                        //
-//Details  : ADƒRƒ“ƒo[ƒ^                                                     //
+//Details  : ADã‚³ãƒ³ãƒãƒ¼ã‚¿                                                     //
 //Argument : -                                                                //
-//Return   : temp                       •ÏŠ·Œãƒf[ƒ^                          //
+//Return   : temp                       å¤‰æ›å¾Œãƒ‡ãƒ¼ã‚¿                          //
 ////////////////////////////////////////////////////////////////////////////////
 
 int     ADConvert(void)
 {
-    int     temp;                                                                //•ÏŠ·ƒf[ƒ^Ši”[•Ï”
+    int     temp;                                                                //å¤‰æ›ãƒ‡ãƒ¼ã‚¿æ ¼ç´å¤‰æ•°
 
-    AD.ADCSR.BIT.ADF = 0;                                                        //ADFƒtƒ‰ƒOƒNƒŠƒA
-    AD.ADCSR.BIT.SCAN = 0;                                                       //’Pˆêƒ‚[ƒh
-    AD.ADCSR.BIT.CKS = 1;                                                        //ƒNƒƒbƒNƒZƒŒƒNƒg 134ƒ‚[ƒh
-    AD.ADCSR.BIT.CH = 0;                                                         //ƒ`ƒƒƒ“ƒlƒ‹ AN0’Pˆêƒ‚[ƒh(P128QÆ)
+    AD.ADCSR.BIT.ADF = 0;                                                        //ADFãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
+    AD.ADCSR.BIT.SCAN = 0;                                                       //å˜ä¸€ãƒ¢ãƒ¼ãƒ‰
+    AD.ADCSR.BIT.CKS = 1;                                                        //ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ 134ãƒ¢ãƒ¼ãƒ‰
+    AD.ADCSR.BIT.CH = 0;                                                         //ãƒãƒ£ãƒ³ãƒãƒ« AN0å˜ä¸€ãƒ¢ãƒ¼ãƒ‰(P128å‚ç…§)
 
-    AD.ADCSR.BIT.ADST = 1;                                                       //AD•ÏŠ·ŠJn
+    AD.ADCSR.BIT.ADST = 1;                                                       //ADå¤‰æ›é–‹å§‹
 
-    while (AD.ADCSR.BIT.ADF == 0);                                               //•ÏŠ·I—¹‚Ü‚Å‘Ò‚Â
+    while (AD.ADCSR.BIT.ADF == 0);                                               //å¤‰æ›çµ‚äº†ã¾ã§å¾…ã¤
 
-    temp = AD.ADDRA >> 6;                                                        //‰E‚É6BITƒVƒtƒg(P127QÆ)‘å–I
+    temp = AD.ADDRA >> 6;                                                        //å³ã«6BITã‚·ãƒ•ãƒˆ(P127å‚ç…§)å¤§äº‹ï¼
 
     return (temp);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : ControlCylinder                                                  //
-//Details  : ƒVƒŠƒ“ƒ_§Œä                                                     //
-//Argument : function                   “®ìİ’è[0:‰º~, 1:ã¸]              //
+//Details  : ã‚·ãƒªãƒ³ãƒ€åˆ¶å¾¡                                                     //
+//Argument : function                   å‹•ä½œè¨­å®š[0:ä¸‹é™, 1:ä¸Šæ˜‡]              //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 void    ControlCylinder(int function)
@@ -337,18 +337,18 @@ void    ControlCylinder(int function)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : Measurement                                                      //
-//Details  : •Îc‘ª’è                                                         //
+//Details  : åèŠ¯æ¸¬å®š                                                         //
 //Argument : -                                                                //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 void    Measurement(void)
 {
-    int     cnt = 0;                                                             //ƒJƒEƒ“ƒ^
+    int     cnt = 0;                                                             //ã‚«ã‚¦ãƒ³ã‚¿
 
     for (cnt = 0; cnt < DEV; cnt++)
     {
-        MeasurementData[cnt] = ADConvert();                                      //ƒf[ƒ^‚ğƒfƒWƒ^ƒ‹’l(0 - 1023)‚ÖƒRƒ“ƒo[ƒg
-        DriveWaferMotor(0,1);                                                    //ƒEƒF[ƒnƒ‚[ƒ^‚ğ1ƒpƒ‹ƒX‰ñ“]
+        MeasurementData[cnt] = ADConvert();                                      //ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ‡ã‚¸ã‚¿ãƒ«å€¤(0 - 1023)ã¸ã‚³ãƒ³ãƒãƒ¼ãƒˆ
+        DriveWaferMotor(0,1);                                                    //ã‚¦ã‚§ãƒ¼ãƒãƒ¢ãƒ¼ã‚¿ã‚’1ãƒ‘ãƒ«ã‚¹å›è»¢
     }
 
 
@@ -357,7 +357,7 @@ void    Measurement(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : WaitStart                                                        //
-//Details  : ˆ—ŠJn‘Ò‚¿iƒXƒCƒbƒ`‰Ÿ‰ºj                                     //
+//Details  : å‡¦ç†é–‹å§‹å¾…ã¡ï¼ˆã‚¹ã‚¤ãƒƒãƒæŠ¼ä¸‹ï¼‰                                     //
 //Argument : -                                                                //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
@@ -375,37 +375,37 @@ void    WaitStart(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : FindNotch                                                        //
-//Details  : ƒmƒbƒ`ŒŸo                                                       //
+//Details  : ãƒãƒƒãƒæ¤œå‡º                                                       //
 //Argument : -                                                                //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 void    FindNotch(void)
 {
-    int     cnt;                                                                 //ƒJƒEƒ“ƒ^
-    int     flag = 0;                                                            //ŒŸoI—¹ƒtƒ‰ƒO
-    int     max = 0;                                                             //ˆê’lŠi”[•Ï”
-    int     test;                                                                //“à•”•Ï”
+    int     cnt;                                                                 //ã‚«ã‚¦ãƒ³ã‚¿
+    int     flag = 0;                                                            //æ¤œå‡ºçµ‚äº†ãƒ•ãƒ©ã‚°
+    int     max = 0;                                                             //ä¸€æ™‚å€¤æ ¼ç´å¤‰æ•°
+    int     test;                                                                //å†…éƒ¨å¤‰æ•°
 
-    /*ƒmƒbƒ`‚ğŒ©‚Â‚¯‚é*/
+    /*ãƒãƒƒãƒã‚’è¦‹ã¤ã‘ã‚‹*/
     for (cnt = 0; cnt < (DEV-2); cnt++)
     {
-        test = MeasurementData[cnt+2] - MeasurementData[cnt];                    //•Îc‚Ì•ÏˆÊ‚ğ‘ã“ü
+        test = MeasurementData[cnt+2] - MeasurementData[cnt];                    //åèŠ¯ã®å¤‰ä½ã‚’ä»£å…¥
 
 
-        /*è‡’l‚æ‚è‚à‘å‚«‚È•Ï‰»‚Å‚ ‚ê‚Îƒmƒbƒ`ŒŸoŠJn*/
+        /*é–¾å€¤ã‚ˆã‚Šã‚‚å¤§ããªå¤‰åŒ–ã§ã‚ã‚Œã°ãƒãƒƒãƒæ¤œå‡ºé–‹å§‹*/
         if (fabs(test) > max)
         {
             max = fabs(test);
-            NotchDegree = cnt;                                                   //ƒmƒbƒ`‚ÌŠp“x(ƒpƒ‹ƒX”)‚ğ•Û‘¶
-            NotchDetectionFlag = 1;                                              //ƒmƒbƒ`ŒŸoƒtƒ‰ƒO‚ğON‚É
+            NotchDegree = cnt;                                                   //ãƒãƒƒãƒã®è§’åº¦(ãƒ‘ãƒ«ã‚¹æ•°)ã‚’ä¿å­˜
+            NotchDetectionFlag = 1;                                              //ãƒãƒƒãƒæ¤œå‡ºãƒ•ãƒ©ã‚°ã‚’ONã«
 
          }
 
-        /*ŒŸo‚Å‚«‚È‚©‚Á‚½ê‡*/
+        /*æ¤œå‡ºã§ããªã‹ã£ãŸå ´åˆ*/
 
         if (cnt == (DEV - 2))
         {
-            NotchDetectionFlag = 0;                                              //ƒmƒbƒ`ŒŸoƒtƒ‰ƒO‚ğOFF‚É
+            NotchDetectionFlag = 0;                                              //ãƒãƒƒãƒæ¤œå‡ºãƒ•ãƒ©ã‚°ã‚’OFFã«
             break;
         }
 
@@ -415,51 +415,51 @@ void    FindNotch(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : FindError                                                        //
-//Details  : •ÎcŒŸo                                                         //
+//Details  : åèŠ¯æ¤œå‡º                                                         //
 //Argument : -                                                                //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 void    FindError(void)
 {
-    int     cnt;                                                                 //ƒJƒEƒ“ƒ^
-    int     max;                                                                 //Å‘å’lŠi”[•Ï”
-    int     normalizeData[DEV];                                                  //³‹K‰»ƒf[ƒ^Ši”[”z—ñ
+    int     cnt;                                                                 //ã‚«ã‚¦ãƒ³ã‚¿
+    int     max;                                                                 //æœ€å¤§å€¤æ ¼ç´å¤‰æ•°
+    int     normalizeData[DEV];                                                  //æ­£è¦åŒ–ãƒ‡ãƒ¼ã‚¿æ ¼ç´é…åˆ—
 
-    /*”z—ñ‚ğ³‹K‰»‚µ‚Äâ‘Î’l‚ğæ‚é*/
+    /*é…åˆ—ã‚’æ­£è¦åŒ–ã—ã¦çµ¶å¯¾å€¤ã‚’å–ã‚‹*/
     for (cnt = 0; cnt <DEV; cnt++)
     {
-        normalizeData[cnt] = fabs(MeasurementData[cnt] - 482);                   //â‘Î’l‚ğæ‚é
+        normalizeData[cnt] = fabs(MeasurementData[cnt] - 482);                   //çµ¶å¯¾å€¤ã‚’å–ã‚‹
     }
 
-    /*•ÎcŒŸoŠJn*/
-    if (NotchDegree < (DEV/2))                                                   //ƒmƒbƒ`‚ª0`ƒÎ‚Ü‚Å‚Ì‚Æ‚«
+    /*åèŠ¯æ¤œå‡ºé–‹å§‹*/
+    if (NotchDegree < (DEV/2))                                                   //ãƒãƒƒãƒãŒ0ï½Ï€ã¾ã§ã®ã¨ã
     {
         max = normalizeData[800];
 
         for (cnt = DEV/2; cnt < DEV; cnt++)
         {
-            /*•Îc‚ªÅ‘å‚Æ‚È‚éŠp“x‚ğŒ©‚Â‚¯‚é*/
+            /*åèŠ¯ãŒæœ€å¤§ã¨ãªã‚‹è§’åº¦ã‚’è¦‹ã¤ã‘ã‚‹*/
             if (max < normalizeData[cnt])
             {
                 max = normalizeData[cnt];
-                ErrorDegree = cnt;                                               //•ÎcŠp“x‚ğƒOƒ[ƒoƒ‹•Ï”‚Ö‘ã“ü
-                ErrorDistance = MeasurementData[cnt] - 482;                      //•Îc‹——£‚ğƒOƒ[ƒoƒ‹•Ï”‚Ö‘ã“ü
+                ErrorDegree = cnt;                                               //åèŠ¯è§’åº¦ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã¸ä»£å…¥
+                ErrorDistance = MeasurementData[cnt] - 482;                      //åèŠ¯è·é›¢ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã¸ä»£å…¥
             }
         }
     }
 
-    else                                                                         //ƒmƒbƒ`‚ªƒÎ`2ƒÎ‚Ü‚Å‚Ì‚Æ‚«
+    else                                                                         //ãƒãƒƒãƒãŒÏ€ï½2Ï€ã¾ã§ã®ã¨ã
     {
         max = normalizeData[0];
 
         for (cnt = 0; cnt < (DEV/2); cnt++)
         {
-            /*•Îc‚ªÅ‘å‚Æ‚È‚éŠp“x‚ğŒ©‚Â‚¯‚é*/
+            /*åèŠ¯ãŒæœ€å¤§ã¨ãªã‚‹è§’åº¦ã‚’è¦‹ã¤ã‘ã‚‹*/
             if (max < normalizeData[cnt])
             {
                 max = normalizeData[cnt];
-                ErrorDegree = cnt;                                               //•ÎcŠp“x‚ğƒOƒ[ƒoƒ‹•Ï”‚Ö‘ã“ü
-                ErrorDistance = MeasurementData[cnt] - 482;                      //•Îc‹——£‚ğƒOƒ[ƒoƒ‹•Ï”‚Ö‘ã“ü
+                ErrorDegree = cnt;                                               //åèŠ¯è§’åº¦ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã¸ä»£å…¥
+                ErrorDistance = MeasurementData[cnt] - 482;                      //åèŠ¯è·é›¢ã‚’ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã¸ä»£å…¥
             }
         }
     }
@@ -469,34 +469,34 @@ void    FindError(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 //Name     : ModifyError                                                      //
-//Details  : •ÎcC³                                                         //
+//Details  : åèŠ¯ä¿®æ­£                                                         //
 //Argument : -                                                                //
 //Return   : -                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 void    ModifyError(void)
 {
 
-    long int     distancePulse;                                                  //C³‹——£(ƒpƒ‹ƒX”)
-    int     cnt;                                                                 //ƒJƒEƒ“ƒ^
+    long int     distancePulse;                                                  //ä¿®æ­£è·é›¢(ãƒ‘ãƒ«ã‚¹æ•°)
+    int     cnt;                                                                 //ã‚«ã‚¦ãƒ³ã‚¿
 
-    /*•Îc‹——£Š·ZiƒZƒ“ƒT’l¨ƒpƒ‹ƒX”j*/
-    distancePulse = (ErrorDistance * 7.8125) ;      //C³ƒpƒ‹ƒX”Zo
+    /*åèŠ¯è·é›¢æ›ç®—ï¼ˆã‚»ãƒ³ã‚µå€¤â†’ãƒ‘ãƒ«ã‚¹æ•°ï¼‰*/
+    distancePulse = (ErrorDistance * 7.8125) ;      //ä¿®æ­£ãƒ‘ãƒ«ã‚¹æ•°ç®—å‡º
 
-    /*•ÎcŠp“xC³*/
+    /*åèŠ¯è§’åº¦ä¿®æ­£*/
     DriveWaferMotor(0, ErrorDegree);
 
     Wait(0,100);
 
-    /*•Îc‹——£C³*/
-    ControlCylinder(1);                                                          //ƒVƒŠƒ“ƒ_‚ğã‚°‚é
+    /*åèŠ¯è·é›¢ä¿®æ­£*/
+    ControlCylinder(1);                                                          //ã‚·ãƒªãƒ³ãƒ€ã‚’ä¸Šã’ã‚‹
     Wait(0,50);
-    DriveArmMotor(distancePulse);                                                //‹——£C³
+    DriveArmMotor(distancePulse);                                                //è·é›¢ä¿®æ­£
     Wait(0,50);
-    ControlCylinder(0);                                                          //ƒVƒŠƒ“ƒ_‚ğ‰º‚°‚é
+    ControlCylinder(0);                                                          //ã‚·ãƒªãƒ³ãƒ€ã‚’ä¸‹ã’ã‚‹
     Wait(0,50);
     Wait(0,100);
 
-     /*ƒmƒbƒ`‚ÌˆÊ’u‚ğ‡‚í‚¹‚é*/
+     /*ãƒãƒƒãƒã®ä½ç½®ã‚’åˆã‚ã›ã‚‹*/
      if (NotchDetectionFlag == 1)
      {
         if (ErrorDegree > NotchDegree)
@@ -510,12 +510,12 @@ void    ModifyError(void)
         }
     }
 
-    /*‘ª’èƒf[ƒ^Ši”[”z—ñ‰Šú‰»*/
+    /*æ¸¬å®šãƒ‡ãƒ¼ã‚¿æ ¼ç´é…åˆ—åˆæœŸåŒ–*/
     for (cnt = 0; cnt<DEV; cnt++)
     {
         MeasurementData[cnt] = 0;
     }
-    /*ƒOƒ[ƒoƒ‹•Ï”‚ğ‰Šú‰»*/
+    /*ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’åˆæœŸåŒ–*/
     ErrorDegree = 0;
     ErrorDistance = 0;
 
